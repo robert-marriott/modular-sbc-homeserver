@@ -4,4 +4,4 @@ COPY StaticWelcomePage /public
 
 RUN npm install http-server -g
 
-CMD ["http-server -p 80"]
+CMD ["/bin/bash http-server -p 80"]

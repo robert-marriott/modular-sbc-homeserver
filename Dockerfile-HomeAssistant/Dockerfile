@@ -9,7 +9,7 @@ EXPOSE 8123
 
 RUN \
 apt-get update && \
-apt-get install python3 python3-pip && \
+apt-get install -y python3 python3-pip && \
 rm -rf /var/lib/apt/lists/*
 
 # useradd -rm homeassistant

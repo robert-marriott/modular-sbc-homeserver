@@ -12,8 +12,9 @@ printf "deb http://packages.openmediavault.org/public arrakis main" > /etc/apt/s
 apt-get update && \
 apt-get install aptitude && \
 apt-get --allow-unauthenticated install openmediavault-keyring && \
-apt-get update && \
-aptitude -y install postfix openmediavault
+apt-get update
+
+RUN aptitude --assume-yes --allow-untrusted --allow-new-installs install postfix openmediavault
 
   # Initialize the system and database.
 CMD omv-initsystem

@@ -16,6 +16,6 @@ rm -rf /var/lib/apt/lists/*
 # mkdir homeassistant
 # chown homeassistant:homeassistant homeassistant
 
-RUN pip3 install homeassistant
+RUN pip3 install Flask-SQLAlchemy homeassistant
 
 CMD hass

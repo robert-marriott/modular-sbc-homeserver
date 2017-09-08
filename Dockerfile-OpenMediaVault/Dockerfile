@@ -15,7 +15,7 @@ apt-get --allow-unauthenticated install openmediavault-keyring && \
 apt-get update
 
 RUN \
-echo "deb http://packages.omv-extras.org/debian/ erasmus main" | sudo tee -a /etc/apt/sources.list.d/omv-extras-org-kralizec.list && \
+echo "deb http://packages.omv-extras.org/debian/ erasmus main" | tee -a /etc/apt/sources.list.d/omv-extras-org-kralizec.list && \
 apt-get update && \
 apt-get install openmediavault-omvextrasorg -y --force-yes
 

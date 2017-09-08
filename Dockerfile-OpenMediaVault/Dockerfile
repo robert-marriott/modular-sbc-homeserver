@@ -10,15 +10,11 @@ EXPOSE 80 443
 RUN \
 printf "deb http://packages.openmediavault.org/public arrakis main" > /etc/apt/sources.list.d/openmediavault.list && \
 apt-get update && \
-apt-get install aptitude && \
+apt-get install -y aptitude && \
 apt-get --allow-unauthenticated install openmediavault-keyring && \
 apt-get update
 
-RUN aptitude --assume-yes --allow-untrusted --allow-new-installs \
---no-install-recommends \
---option Dpkg::Options::="--force-confdef" \
---option DPkg::Options::="--force-confold" \
-install postfix openmediavault
+RUN aptitude --assume-yes install postfix openmediavault
 
   # Initialize the system and database.
 CMD omv-initsystem

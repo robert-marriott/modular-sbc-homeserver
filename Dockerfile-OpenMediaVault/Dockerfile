@@ -13,7 +13,7 @@ apt-get update && \
 apt-get install aptitude && \
 apt-get --allow-unauthenticated install openmediavault-keyring && \
 apt-get update && \
-aptitude install -y postfix openmediavault
+yes | aptitude install -y postfix openmediavault
 
   # Initialize the system and database.
 CMD omv-initsystem

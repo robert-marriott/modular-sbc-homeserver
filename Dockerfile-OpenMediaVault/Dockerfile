@@ -13,7 +13,7 @@ apt-get update && \
 apt-get install aptitude && \
 apt-get --allow-unauthenticated install openmediavault-keyring && \
 apt-get update && \
-aptitude --yes --force-yes --auto-remove --show-upgraded \
+aptitude --assume-yes --force-yes --auto-remove --show-upgraded \
 	# --no-install-recommends \
 	# --option Dpkg::Options::="--force-confdef" \
 	# --option DPkg::Options::="--force-confold" \

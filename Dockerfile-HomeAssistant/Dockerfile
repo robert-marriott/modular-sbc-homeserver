@@ -20,7 +20,7 @@ rm -rf /var/lib/apt/lists/*
 # mkdir homeassistant
 # chown homeassistant:homeassistant homeassistant
 
-RUN pip3 install Flask-SQLAlchemy homeassistant &&
+RUN pip3 install Flask-SQLAlchemy homeassistant && \
     pip3 install --no-cache-dir -r requirements_all.txt && \
     pip3 install --no-cache-dir mysqlclient psycopg2 uvloop cchardet
 

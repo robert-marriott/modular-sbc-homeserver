@@ -16,7 +16,7 @@ apk update && \
 apk upgrade && \
 apk add \
  bash \
- python3-dev \
+ python3 \
  py-pip \
  gcc \
  make \
@@ -30,6 +30,8 @@ RUN \
 pip install --upgrade pip && \
 pip install --upgrade setuptools && \
 pip install \
+ pathlib \
+ pathlib2 \
  # pycrypto \
  # cryptography \
  # packaging \

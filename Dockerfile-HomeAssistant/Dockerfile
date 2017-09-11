@@ -16,7 +16,7 @@ apk update && \
 apk upgrade && \
 apk add \
  bash \
- python-dev \
+ python3-dev \
  py-pip \
  gcc \
  make \

@@ -18,7 +18,8 @@ apk upgrade && \
 apk add \
  bash \
  python-dev \
- python-pip \
+ py-pip \
+ gcc \
  git \
  openssl-dev \
  libffi-dev && \

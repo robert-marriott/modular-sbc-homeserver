@@ -4,9 +4,8 @@
 #      docker run -d --restart=always -p 84:8000 test-ajenti
 #
 ###############################################################################
-
-# FROM hypriot/rpi-alpine-scratch
-FROM alpine
+FROM hypriot/rpi-alpine-scratch
+# FROM alpine
 
 ENV AJENTI_HOME="/home/ajenti"
 

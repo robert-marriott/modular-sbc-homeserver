@@ -12,6 +12,7 @@ VOLUME /config
 COPY requirements_all.txt requirements_all.txt
 
 RUN \
+apt-get install -y curl && \
 curl -O https://raw.githubusercontent.com/home-assistant/fabric-home-assistant/master/hass_rpi_installer.sh && \
 bash hass_rpi_installer.sh
 # RUN \

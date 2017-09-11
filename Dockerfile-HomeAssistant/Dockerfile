@@ -20,6 +20,8 @@ apk add \
  python-dev \
  py-pip \
  gcc \
+ make \
+ musl-dev \
  git \
  openssl-dev \
  libffi-dev && \

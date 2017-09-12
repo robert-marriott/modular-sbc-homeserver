@@ -19,6 +19,8 @@ RUN apt-get update && \
       python3-dev \
       python3-yaml \
       libyaml-dev && \
+      # Remove apt cache to reduce image size
+      rm -rf /var/lib/apt/lists/* && \
     pip3 install --upgrade \
       pip \
       sqlalchemy \

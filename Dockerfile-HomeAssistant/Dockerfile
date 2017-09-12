@@ -14,8 +14,8 @@ EXPOSE 8123
 # Add basic build dependencies
 RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get install -y apt-utils python3-pip python3-dev libyaml && \
-    pip3 install --upgrade sqlalchemy aiohttp_cors virtualenv
+    apt-get install -y apt-utils python3-pip python3-dev libyaml-dev && \
+    pip3 install --upgrade pip3 sqlalchemy aiohttp_cors virtualenv
 
 # Create system user for running haas
 RUN adduser --system homeassistant && \

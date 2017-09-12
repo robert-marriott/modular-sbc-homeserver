@@ -14,8 +14,8 @@ EXPOSE 8123
 # Add basic build dependencies
 RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get install -y apt-utils python3-pip python3-dev libyaml-dev && \
-    pip3 install --upgrade pip3 sqlalchemy aiohttp_cors virtualenv
+    apt-get install -y apt-utils python3-pip python3-dev python3-yaml libyaml-dev && \
+    pip3 install --upgrade pip sqlalchemy aiohttp_cors xmltodict virtualenv
 
 # Create system user for running haas
 RUN adduser --system homeassistant && \
@@ -37,7 +37,7 @@ RUN cd /srv/homeassistant && \
 # Switch to homeassistnat user for virtualenvironment and such
 USER homeassistant
 
-CMD /srv/homeassistant/bin/hass --open-ui
+CMD hass --open-ui
 
 # RUN \
 # apk update && \

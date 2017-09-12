@@ -31,10 +31,20 @@ RUN sed -i 's#^DocumentRoot ".*#DocumentRoot "/web/html"#g' /etc/apache2/httpd.c
     sed -i 's/Options Indexes/Options /g' /etc/apache2/httpd.conf && \
 
     mkdir /web/ && chown -R apache.www-data /web && \
-    git clone https://github.com/afaqurk/linux-dash.git /web
+
+# problems that can probably be solved with configuration
+    ln -s /var/www/modules /web/modules && \
+    mkdir -p /web/config/conf.d && \
+    ln -s /etc/apache2/conf.d /web/config/conf.d && \
+    mkdir /web/html -p && \
+    mkdir /web/logs -p && \
+    ln -s /var/www/logs /web/logs && \
+# cloen repo
+    git clone https://github.com/afaqurk/linux-dash.git /web/html
+
 
 EXPOSE 80 443
 
-VOLUME /web
+VOLUME /app
 
 CMD exec /usr/sbin/apachectl -DFOREGROUND

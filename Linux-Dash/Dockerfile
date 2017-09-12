@@ -3,7 +3,7 @@
 # Linux-Dash is a supposedly lightweight, simple webui for monitoring Linux
 # system information. It runs on whatever arbitrary webserver.
 ###############################################################################
-FROM hypriot/rpi-alpine-scratch
+FROM armhf/alpine
 
 # Add dependencies for Linux-Dash to work
 RUN  apk update && apk upgrade && \
@@ -36,6 +36,4 @@ RUN sed -i 's#^DocumentRoot ".*#DocumentRoot "/web/html"#g' /etc/apache2/httpd.c
 EXPOSE 80 443
 
 # VOLUME /web
-
-
-# CMD ["ajenti-panel","--autologin","-v"]
+# CMD 

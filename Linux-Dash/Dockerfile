@@ -21,8 +21,8 @@ RUN  apk update && apk upgrade && \
 
   # clone repo
 RUN \
-      mkdir -p /home/linuxdash && \
-      git clone https://github.com/afaqurk/linux-dash.git /home/linuxdash && \
+      # mkdir -p /home/linuxdash && \
+      git clone https://github.com/afaqurk/linux-dash.git && \
       cd linux-dash/app/server && \
       npm install --production
 

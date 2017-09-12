@@ -17,3 +17,14 @@ rm -rf /var/cache/apk/*
 # RUN curl -sSL https://install.pi-hole.net | bash
 
 CMD curl -sSL https://install.pi-hole.net | bash
+
+docker run -d --name hass -p 8123:8123 --net=host -v /etc/localtime:/etc/localtime:ro -v haas-data:/config lroguet/rpi-home-assistant:latest
+
+OVPN_DATA="ovpn-data"
+docker volume create --name $OVPN_DATA
+
+docker run -v $OVPN_DATA:/etc/openvpn --rm giggio/openvpn-arm ovpn_genconfig -u udp://108.56.166.154
+docker run -v $OVPN_DATA:/etc/openvpn --rm -it giggio/openvpn-arm ovpn_initpki nopass
+docker run -v $OVPN_DATA:/etc/openvpn -d --name openvpn -p 1194:1194/udp --cap-add=NET_ADMIN giggio/openvpn-arm
+docker run -v $OVPN_DATA:/etc/openvpn --rm -it giggio/openvpn-arm easyrsa build-client-full robert nopass
+docker run -v $OVPN_DATA:/etc/openvpn --rm giggio/openvpn-arm ovpn_getclient robert > robert.ovpn

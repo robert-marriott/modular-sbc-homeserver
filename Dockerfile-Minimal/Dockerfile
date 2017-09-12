@@ -4,7 +4,7 @@
 #
 #
 ###############################################################################
-FROM hypriot/rpi-alpine-scratch
+FROM armhf/alpine
 
 RUN apk update && \
 apk upgrade && \

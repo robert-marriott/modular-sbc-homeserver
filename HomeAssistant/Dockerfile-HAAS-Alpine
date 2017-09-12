@@ -3,7 +3,7 @@
 #      HomeAssistant.io is a home automation program with a nice GUI
 #
 ###############################################################################
-FROM hypriot/rpi-alpine-scratch
+FROM armhf/alpine
 
 ENV HOME=/home/homeassistant
 
@@ -42,8 +42,6 @@ pip install \
 RUN \
 mkdir ${HOME} -p && \
 adduser -h ${HOME} -s /bin/bash -u 1001 -G root -D default && \
-cd ${HOME} && git clone https://github.com/home-assistant/fabric-home-assistant.git && \
-cd fabric-home-assistant && fab deploy -H localhost 2>&1 | tee installation_report.txt
 
 CMD haas --open-ui
 # CMD [ "python", "-m", "homeassistant", "--config", "/config" ]

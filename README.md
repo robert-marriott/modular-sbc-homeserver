@@ -11,16 +11,17 @@ Images used as reference:
 4) Deluge -
 
 Services of interest:
-* Portainer
-* Pydio
+* Portainer - https://hub.docker.com/r/hypriot/rpi-portainer/
+* Pydio -
 * Owncloud
-* OpenMediaVault
-* Homeassistant.io
-* PiHole
+* OpenMediaVault -
+* Homeassistant.io [Made Custom] - https://home-assistant.io/docs/installation/python/
+* PiHole - https://hub.docker.com/r/flammedemon/pi-hole/
 * Games
-* Webmin
+* Webmin [Made Custom] - 
 * openshift- https://docs.openshift.org/latest/getting_started/administrators.html
-* Plex
+* Plex -
 * Organizr - https://hub.docker.com/r/lsioarmhf/organizr/
 * OpenVPN - https://hub.docker.com/r/giggio/openvpn-arm/
-* Deluge
+* Deluge - https://hub.docker.com/r/jordancrawford/rpi-deluge/
+* Linux-Dash - [Made Custom] - https://github.com/afaqurk/linux-dash/wiki

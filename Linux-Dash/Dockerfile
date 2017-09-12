@@ -31,9 +31,10 @@ RUN sed -i 's#^DocumentRoot ".*#DocumentRoot "/web/html"#g' /etc/apache2/httpd.c
     sed -i 's/Options Indexes/Options /g' /etc/apache2/httpd.conf && \
 
     mkdir /web/ && chown -R apache.www-data /web && \
-    cd /web && git clone https://github.com/afaqurk/linux-dash.git
+    git clone https://github.com/afaqurk/linux-dash.git /web
 
 EXPOSE 80 443
 
 VOLUME /web
+
 CMD exec /usr/sbin/apachectl -DFOREGROUND

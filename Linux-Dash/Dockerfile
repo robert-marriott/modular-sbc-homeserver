@@ -6,16 +6,16 @@
 FROM hypriot/rpi-alpine-scratch
 
 # Add dependencies for Linux-Dash to work
-RUN  apk add --update \
-            bash \
-            apache2 \
-            apache2-utils \
-            curl \
-            php5 \
-            php5-curl \
-            php5-json \
-            git && \
-            rm -rf /var/cache/apk/*
+RUN  apk update && apk upgrade && \
+     apk add  bash \
+              apache2 \
+              apache2-utils \
+              curl \
+              php5 \
+              php5-curl \
+              php5-json \
+              git && \
+              rm -rf /var/cache/apk/*
 
 # Create config file with sed for simple deployment
 RUN sed -i 's#^DocumentRoot ".*#DocumentRoot "/web/html"#g' /etc/apache2/httpd.conf && \

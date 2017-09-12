@@ -35,5 +35,5 @@ RUN sed -i 's#^DocumentRoot ".*#DocumentRoot "/web/html"#g' /etc/apache2/httpd.c
 
 EXPOSE 80 443
 
-# VOLUME /web
-# CMD 
+VOLUME /web
+CMD exec /usr/sbin/apachectl -DFOREGROUND

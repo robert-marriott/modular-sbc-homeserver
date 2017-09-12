@@ -5,9 +5,8 @@
 ###############################################################################
 FROM hypriot/rpi-alpine-scratch
 
-RUN mkdir ${HOME} && \
-    # Add dependencies for Linux-Dash to work
-    apk add --update \
+# Add dependencies for Linux-Dash to work
+RUN  apk add --update \
             bash \
             apache2 \
             apache2-utils \
@@ -29,10 +28,10 @@ RUN sed -i 's#^DocumentRoot ".*#DocumentRoot "/web/html"#g' /etc/apache2/httpd.c
     sed -i 's#Directory "/var/www/localhost/cgi-bin.*#Directory "/web/cgi-bin" >#g' /etc/apache2/httpd.conf && \
 
     sed -i 's#/var/log/apache2/#/web/logs/#g' /etc/logrotate.d/apache2 && \
-    sed -i 's/Options Indexes/Options /g' /etc/apache2/httpd.conf
+    sed -i 's/Options Indexes/Options /g' /etc/apache2/httpd.conf && \
 
-RUN  mkdir /web/ && chown -R apache.www-data /web && \
-cd /web && git clone https://github.com/afaqurk/linux-dash.git
+    mkdir /web/ && chown -R apache.www-data /web && \
+    cd /web && git clone https://github.com/afaqurk/linux-dash.git
 
 EXPOSE 80 443
 

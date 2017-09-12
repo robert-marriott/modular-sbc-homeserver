@@ -21,10 +21,10 @@ RUN  apk update && apk upgrade && \
     rm -rf /var/cache/apk/* && \
 # Create container unpriveleged base user and diretory structure
     adduser -s /bin/bash -u 1001 -G root -D default && \
-    chown -R 1001:0 /linux-dash && \
+    chown -R 1001:0 /linux-dash
 
 EXPOSE 80 443
 
 USER 1001
 
-CMD node /linuxdash/app/server/index.js
+CMD node /linux-dash/app/server/index.js

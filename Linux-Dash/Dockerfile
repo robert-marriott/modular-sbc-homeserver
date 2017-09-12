@@ -3,7 +3,7 @@
 # Linux-Dash is a supposedly lightweight, simple webui for monitoring Linux
 # system information. It runs on whatever arbitrary webserver.
 ###############################################################################
-FROM armhf/alpine
+FROM armhf/alpine:edge
 
 # Add dependencies for Linux-Dash to work
 RUN  apk update && apk upgrade && \

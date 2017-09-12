@@ -28,5 +28,3 @@ EXPOSE 80 443
 USER 1001
 
 CMD node /linux-dash/app/server/index.js --port 8080
-
-ssh -L 8080:12607:80 robert@12607 -N

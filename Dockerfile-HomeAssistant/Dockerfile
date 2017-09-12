@@ -31,7 +31,7 @@ USER homeassistant
 # Create and activate python virtualenv. It is just a folder.
 RUN cd /srv/homeassistant && \
     virtualenv -p python3 /srv/homeassistant && \
-    source /srv/homeassistant/bin/activate && \
+    /bin/bash -c "source /srv/homeassistant/bin/activate" && \
     pip3 install --upgrade homeassistant
 
 CMD /srv/homeassistant/bin/hass --open-ui

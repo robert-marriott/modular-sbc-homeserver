@@ -25,14 +25,17 @@ RUN adduser --system homeassistant && \
 # If you need Zwave support
     usermod -G dialout -a homeassistant
 
-# Switch to homeassistnat user for virtualenvironment and such
-USER homeassistant
+# # Switch to homeassistnat user for virtualenvironment and such
+# USER homeassistant
 
 # Create and activate python virtualenv. It is just a folder.
 RUN cd /srv/homeassistant && \
     virtualenv -p python3 /srv/homeassistant && \
     /bin/bash -c "source /srv/homeassistant/bin/activate" && \
     pip3 install --upgrade homeassistant
+
+# Switch to homeassistnat user for virtualenvironment and such
+USER homeassistant
 
 CMD /srv/homeassistant/bin/hass --open-ui
 

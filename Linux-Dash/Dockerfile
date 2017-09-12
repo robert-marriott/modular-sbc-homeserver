@@ -1,30 +1,39 @@
+
 ###############################################################################
 # Linux-Dash is a supposedly lightweight, simple webui for monitoring Linux
 # system information. It runs on whatever arbitrary webserver.
 ###############################################################################
-FROM arm32v7/debian:jessie-slim
+FROM hypriot/rpi-alpine-scratch
 
-ENV HOME=/home/cockpit \
-    COCKPIT_REPO="deb https://fedorapeople.org/groups/cockpit/debian unstable main"
+ENV AJENTI_HOME="/home/ajenti"
 
-# Expose the port used for the webUI
-EXPOSE 9090
+RUN mkdir ${AJENTI_HOME} && \
+    # Add dependencies for webmin to work
+    apk add --update \
+            tar \
+            bash \
+apache2 \
+apache2-utils \
+curl \
+php5 \
+php5-curl \
+php5-json \
+git \
 
-# Create system user for running cockpit
-RUN adduser --system cockpit && \
-    addgroup cockpit && \
-    mkdir -p ${HOME}
-        # Add basic build dependencies
-RUN echo ${COCKPIT_REPO} | tee -a /etc/apt/sources.list && \
-    apt-key adv --keyserver sks-keyservers.net --recv-keys F1BAA57C && \
-    apt-get update && \
-    apt-get upgrade -y && \
-    apt-get install -y cockpit cockpit-dashboard && \
-    rm -rf /var/lib/apt/lists/*
+            python-dev \
+            linux-headers \
+            libxml2-dev \
+            libxslt-dev \
+            libffi-dev \
+            openssl-dev \
+            jpeg-dev \
+            musl-dev \
+            py-pip \
+            gcc \
+            curl && \
+    rm -rf /var/cache/apk/*
 
-# RUN systemctl enable --now cockpit.socket
+git clone https://github.com/afaqurk/linux-dash.git
 
-# # Switch to homeassistnat user for virtualenvironment and such
-# USER cockpit
 
-CMD systemctl enable --now cockpit.socket
+# CMD ["ajenti-panel","--autologin","-v"]

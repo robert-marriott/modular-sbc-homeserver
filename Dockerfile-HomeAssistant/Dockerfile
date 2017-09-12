@@ -13,13 +13,15 @@ EXPOSE 8123
 
 # Add basic build dependencies
 RUN apt-get update && \
-    apt-get upgrade && \
-    apt-get install python3-pip python3-dev && \
+    apt-get upgrade -y && \
+    apt-get install -y apt-utils python3-pip python3-dev && \
     pip3 install --upgrade virtualenv
 
 # Create system user for running haas
 RUN adduser --system homeassistant && \
     addgroup homeassistant && \
+    mkdir /srv/homeassistant && \
+    chown -R homeassistant /srv/homeassistant && \
 # If you need Zwave support
     usermod -G dialout -a homeassistant
 
@@ -27,7 +29,7 @@ RUN adduser --system homeassistant && \
 USER homeassistant
 
 # Create and activate python virtualenv. It is just a folder.
-RUN mkdir /srv/homeassistant && cd /srv/homeassistant && \
+RUN cd /srv/homeassistant && \
     virtualenv -p python3 /srv/homeassistant && \
     source /srv/homeassistant/bin/activate && \
     pip3 install --upgrade homeassistant

@@ -18,10 +18,10 @@ RUN adduser --system cockpit && \
 
         # Add basic build dependencies
 RUN echo ${COCKPIT_REPO} > /etc/apt/sources.list.d/cockpit.list && \
-    sudo apt-key adv --keyserver sks-keyservers.net --recv-keys 0D2A45C3F1BAA57C && \
-    sudo apt-key finger F1BAA57C && \
-    sudo apt-get update && \
-    sudo apt-get install cockpit cockpit-dashboard && \
+    apt-key adv --keyserver sks-keyservers.net --recv-keys 0D2A45C3F1BAA57C && \
+    apt-key finger F1BAA57C && \
+    apt-get update && \
+    apt-get install cockpit cockpit-dashboard && \
     rm -rf /var/lib/apt/lists/*
 
 # RUN systemctl enable --now cockpit.socket

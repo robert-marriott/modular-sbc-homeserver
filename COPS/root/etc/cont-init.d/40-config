@@ -1,0 +1,31 @@
+#!/usr/bin/with-contenv bash
+
+# create folders
+mkdir -p \
+	/config/cache
+
+# make symlink
+[[ ! -e /var/www/localhost/cops ]] && \
+	ln -s /usr/share/webapps/cops /var/www/localhost/cops
+
+# clear previous config
+for f in /var/www/localhost/cops/config_local.*.php
+do 
+[ -f "$f" ] && rm "$f"
+done
+
+# copy config
+[[ ! -e /config/config_local.php ]] && \
+	cp /defaults/config_local.php /config/config_local.php
+
+# copy extra user-profiles
+for f in /config/config_local*.php
+do 
+cp "$f" /var/www/localhost/cops/
+done
+
+# permissions
+chown -R abc:abc \
+	/config \
+	/usr/share/webapps/cops \
+	var/www/localhost/cops

@@ -1,20 +1,27 @@
-# Initial build container. Contains 500mb of build dependencies and make
-    FROM armhf/alpine
-    RUN apk update && apk add clang git cmake make bash build-base perl
+    # Initial build container. Contains 500mb of build dependencies and make
+    FROM arm32v7/debian:jessie-slim
+    RUN apt-get update && apt-get install -y build-essential make cmake git
     RUN git clone --recursive https://github.com/cuberite/cuberite.git
-    RUN apk --no-cache add ca-certificates wget
-    RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://raw.githubusercontent.com/sgerrand/alpine-pkg-glibc/master/sgerrand.rsa.pub
-    RUN wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.25-r0/glibc-2.25-r0.apk
-    RUN apk add glibc-2.25-r0.apk
-    RUN apk del musl
     RUN   cd cuberite && \
           cmake . -DCMAKE_BUILD_TYPE=RELEASE && \
           make -j 4
-    COPY /cuberite/Server .
 
-# Build the final container by moving over the build artifacts
+    # Build the final container by moving over the build artifacts
     FROM armhf/alpine
-    EXPOSE 25565 25566
-    RUN apk add --update libstdc++
-    COPY --from=0 /cuberite/Server /cuberite/Server
+    EXPOSE 25565 25566 8080
+    COPY --from=0 /cuberite/Server                                   /cuberite/Server
+    COPY --from=0 /lib/arm-linux-gnueabihf/ld-2.19.so                /lib/ld-linux-armhf.so.3
+    COPY --from=0 /lib/arm-linux-gnueabihf/libgcc_s.so.1             /lib/libgcc_s.so.1
+    COPY --from=0 /lib/arm-linux-gnueabihf/libdl-2.19.so             /lib/libdl.so.2
+    COPY --from=0 /lib/arm-linux-gnueabihf/libm-2.19.so              /lib/libm.so.6
+    COPY --from=0 /lib/arm-linux-gnueabihf/libpthread-2.19.so        /lib/libpthread.so.0
+    COPY --from=0 /lib/arm-linux-gnueabihf/libc-2.19.so              /lib/libc.so.6
+    COPY --from=0 /usr/lib/arm-linux-gnueabihf/libstdc++.so.6.0.20   /lib/libstdc++.so.6
     CMD ["./cuberite/Server/Cuberite"]
+
+    # This works, but doesn't run on alpine.
+    # FROM arm32v7/debian:jessie-slim
+    # EXPOSE 25565 25566
+    # RUN apt-get install -y libstdc++6
+    # COPY --from=0 /cuberite/Server /cuberite/Server
+    # CMD ["./cuberite/Server/Cuberite"]

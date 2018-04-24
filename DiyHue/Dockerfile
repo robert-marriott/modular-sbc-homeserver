@@ -24,7 +24,7 @@ RUN  apk update && apk upgrade && \
 # Create container unpriveleged base user and diretory structure
     adduser -s /bin/bash -u 1001 -G root -D default && \
     chown -R 1001:0 /opt/hue-emulator && \
-    chmod -R 644 /opt/hue-emulator
+    chmod -R 777 /opt/hue-emulator
 
 EXPOSE 80
 

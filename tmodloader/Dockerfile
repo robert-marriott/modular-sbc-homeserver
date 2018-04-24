@@ -7,8 +7,9 @@ ENV SERVER_VERSION="1353" \
     MODLOADER_ZIP="tModLoader.Linux.v0.10.1.3.zip"
 
 RUN apk update \
-    && apk upgrade && \
+    && apk upgrade \
     && apk add \
+     openjdk8-jre \
      bash \
      wget \
     && rm -rf /var/cache/apk/* \
@@ -22,9 +23,10 @@ RUN apk update \
     && wget $MODLOADER_URL/$MODLOADER_ZIP \
     && unzip $MODLOADER_ZIP \
     && rm *.zip \
-    && chmod +x tModLoaderServer \
+    && chmod -R 777 * \
+    # && chown -R robert /terraria \
   # Clean up unneeded alpine packages
-    && apk delete wget
+    && apk del wget
 
 # Allow for external data
 # VOLUME ["/terraria/world", "/tshock/ServerPlugins"]
@@ -33,4 +35,4 @@ RUN apk update \
 WORKDIR /terraria
 
 # run the server
-ENTRYPOINT ["./tModLoader","-steam","-autocreate 1"]
+# ENTRYPOINT ["/terraria/tModLoaderServer","-steam","-autocreate 1"]
